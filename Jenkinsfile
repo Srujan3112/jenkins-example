@@ -11,14 +11,14 @@ pipeline {
             }
         }
 
-        stage ('Testing Stage') {
+        //stage ('Testing Stage') {
 
-            steps {
-                withMaven(maven : 'maven_3_5_0') {
-                    bat 'mvn test'
-                }
-            }
-        }
+          //  steps {
+              //  withMaven(maven : 'maven_3_5_0') {
+                   // bat 'mvn test'
+               // }
+           // }
+       // }
 
 
         stage ('Deployment Stage') {

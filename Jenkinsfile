@@ -10,23 +10,38 @@ pipeline {
                 }
             }
         }
+        
+       stage ('Testing Stage') {
 
-        //stage ('Testing Stage') {
+         steps {
+           withMaven(maven : 'maven_3_5_0') {
+                  bat 'mvn test'
+               }
+           }
+       }
+        stage ('Packaging Stage') {
 
-          //  steps {
-              //  withMaven(maven : 'maven_3_5_0') {
-                   // bat 'mvn test'
-               // }
-           // }
-       // }
+         steps {
+           withMaven(maven : 'maven_3_5_0') {
+                  bat 'mvn package'
+               }
+           }
+       }
+        stage ('Installing Stage') {
 
-
+         steps {
+           withMaven(maven : 'maven_3_5_0') {
+                  bat 'mvn install'
+               }
+           }
+       }
         stage ('Deployment Stage') {
             steps {
                 withMaven(maven : 'maven_3_5_0') {
-                    bat 'mvn deploy'
+                    bat 'mvn deploy' 
                 }
             }
         }
+       
     }
 }
